@@ -21,12 +21,6 @@
 }
 </style>
 
-<script>
-	$(function() {
-		$("#budget-content").load("/budget/manage-budget.html");
-	});
-</script>
-
 </head>
 <body>
 	<div class="container">
@@ -46,7 +40,7 @@
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li><a href="/">Home</a></li>
-						<li><a href="budget">Manage Expense </a></li>
+						<li><a href="budget">Manage Budget </a></li>
 						<li class="active"><a href="expense">Manage Expense</a></li>
 					</ul>
 				</div>
@@ -70,10 +64,7 @@
 											<td>Total Expense</td>
 											<td><span class="label label-primary">${totalExpense}</span></td>
 										</tr>
-										<tr>
-											<td>Remaining Expense</td>
-											<td><span class="label label-primary">${remainingExpense}</span></td>
-										</tr>
+										
 									</tbody>
 								</table>
 							</div>
@@ -81,18 +72,18 @@
 
 
 						<div class="panel panel-default">
-							<div class="panel-heading">Add Budget</div>
+							<div class="panel-heading">Add Expense</div>
 							<div class="panel-body">
 								<div style="padding: 15px;">
-									<form action="save-budget" method="POST"
+									<form action="save-expense" method="POST"
 										class="form-horizontal">
-										<input type="hidden" name="id" value="${budget.id}">
+										<input type="hidden" name="id" value="${expense.id}">
 										<div class="panel">
 											<div class="form-group">
 												<div class="input-group">
 													<span class="input-group-addon" id="basic-addon1">Description</span>
 													<input type="text" class="form-control" name="description"
-														placeholder="Description" value="${budget.description}"
+														placeholder="Description" value="${expense.description}"
 														aria-describedby="basic-addon1">
 												</div>
 											</div>
@@ -101,12 +92,12 @@
 													<span class="input-group-addon" id="basic-addon2">Amount
 													</span> <input type="text" class="form-control"
 														placeholder="Amount" name="amount"
-														value="${budget.amount}" aria-describedby="basic-addon1">
+														value="${expense.amount}" aria-describedby="basic-addon1">
 												</div>
 											</div>
 											<div class="form-group text-center">
 												<input type="submit" class="btn btn-primary"
-													value="Add Budget" />
+													value="Add Expense" />
 											</div>
 										</div>
 									</form>
@@ -120,7 +111,6 @@
 						<table class="table table-striped table-hover table-bordered">
 							<thead>
 								<tr>
-									<th>#</th>
 									<th>Description</th>
 									<th>Date Created</th>
 									<th>Amount</th>
@@ -128,15 +118,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${not empty budgets}">
-									<c:forEach var="budget" items="${budgets}">
+								<c:if test="${not empty expenses}">
+									<c:forEach var="expense" items="${expenses}">
 										<tr>
-											<td>${budget.id}</td>
-											<td>${budget.description}</td>
+											<td>${expense.description}</td>
 											<td><fmt:formatDate type="both"
-													value="${budget.dateCreated}" /></td>
-											<td>${budget.amount}</td>
-											<td><a href="delete-budget?id=${budget.id}"><span
+													value="${expense.dateCreated}" /></td>
+											<td>${expense.amount}</td>
+											<td><a href="delete-expense?id=${expense.id}"><span
 													class="glyphicon glyphicon-trash"></span></a></td>
 										</tr>
 									</c:forEach>

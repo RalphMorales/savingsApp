@@ -30,7 +30,6 @@ public class BudgetService {
 		return result.stream().mapToDouble(Double::doubleValue).sum();
 	}
 	
-	//TODO: create implementation
 	public Double remainingBudget(){
 		return new Double(100);
 	}

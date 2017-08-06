@@ -44,7 +44,7 @@ public class BudgetController {
 	}
 
 	@GetMapping("/delete-budget")
-	public String hello(@RequestParam Long id, HttpServletRequest request) {
+	public String deleteBudget(@RequestParam Long id, HttpServletRequest request) {
 		budgetService.deleteBudget(id);
 		return allBudget(request);
 	}

@@ -21,12 +21,6 @@
 }
 </style>
 
-<script>
-	$(function() {
-		$("#budget-content").load("/budget/manage-budget.html");
-	});
-</script>
-
 </head>
 <body>
 	<div class="container">
@@ -120,7 +114,6 @@
 						<table class="table table-striped table-hover table-bordered">
 							<thead>
 								<tr>
-									<th>#</th>
 									<th>Description</th>
 									<th>Date Created</th>
 									<th>Amount</th>
@@ -131,7 +124,6 @@
 								<c:if test="${not empty budgets}">
 									<c:forEach var="budget" items="${budgets}">
 										<tr>
-											<td>${budget.id}</td>
 											<td>${budget.description}</td>
 											<td><fmt:formatDate type="both"
 													value="${budget.dateCreated}" /></td>

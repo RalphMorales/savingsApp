@@ -47,7 +47,7 @@ public class ExpenseController {
 	}
 
 	@GetMapping("/delete-expense")
-	public String hello(@RequestParam Long id, HttpServletRequest request) {
+	public String deleteExpense(@RequestParam Long id, HttpServletRequest request) {
 		expenseService.deleteExpense(id);
 		return allExpense(request);
 	}
