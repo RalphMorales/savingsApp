@@ -9,16 +9,23 @@
 <title>Savings App | Home</title>
 
 <link href="/static/css/bootstrap-sandstone.min.css" rel="stylesheet">
+<link href="/static/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="/static/css/rowGroup.bootstrap.min.css" rel="stylesheet">
 <!-- <link href="/static/css/bootstrap.min.css" rel="stylesheet"> -->
 
 <script src="/static/js/jquery-3.1.1.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/Chart.js"></script>
+<script src="/static/js/jquery.dataTables.min.js"></script>
+<script src="/static/js/dataTables.rowGroup.min.js"></script>
 
 <style type="text/css">
 .input-group-addon {
 	min-width: 120px;
 	text-align: left;
+}
+select {
+    color: green;
 }
 </style>
 
@@ -81,7 +88,8 @@
 					<div class="panel-heading">Add Expense</div>
 					<div class="panel-body">
 						<div style="padding: 15px;">
-							<form action="save-expense?mode=${MODE}" method="POST" class="form-horizontal">
+							<form action="save-expense?mode=${MODE}" method="POST"
+								class="form-horizontal">
 								<input type="hidden" name="id" value="${expense.id}">
 								<div class="panel">
 									<div class="form-group">
@@ -123,48 +131,51 @@
 			</div>
 
 			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-				<div class="panel panel-default">
-					<c:choose>
-						<c:when test="${MODE == 'ALL_EXPENSE'}">
-
-								<table class="table table-striped table-hover table-bordered">
-									<thead>
+				<c:choose>
+					<c:when test="${MODE == 'ALL_EXPENSE'}">
+						<table id="expenseTable"
+							class="table table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<th>Date Created</th>
+									<th>Type</th>
+									<th>Description</th>
+									<th>Amount</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:if test="${not empty expenses}">
+									<c:forEach var="expense" items="${expenses}">
 										<tr>
-											<th>Date Created</th>
-											<th>Type</th>
-											<th>Description</th>
-											<th>Amount</th>
-											<th>Action</th>
+											<td><fmt:formatDate type="both"
+													value="${expense.dateCreated}" /></td>
+											<td>${expense.type}</td>
+											<td>${expense.description}</td>
+											<td>${expense.amount}</td>
+											<td><a href="delete-expense?id=${expense.id}"><span
+													class="glyphicon glyphicon-trash"></span></a></td>
 										</tr>
-									</thead>
-									<tbody>
-										<c:if test="${not empty expenses}">
-											<c:forEach var="expense" items="${expenses}">
-												<tr>
-													<td><fmt:formatDate type="both"
-															value="${expense.dateCreated}" /></td>
-													<td>${expense.type}</td>
-													<td>${expense.description}</td>
-													<td>${expense.amount}</td>
-													<td><a href="delete-expense?id=${expense.id}"><span
-															class="glyphicon glyphicon-trash"></span></a></td>
-												</tr>
-											</c:forEach>
-										</c:if>
-									</tbody>
-								</table>
-						</c:when>
-						<c:when test="${MODE == 'GRAPH'}">
-							<canvas id="myChart" class="chart"></canvas>
-							<script>
-								var ctx = document.getElementById('myChart')
-										.getContext('2d');
-								var data = ${pieData}
-								var myChart = new Chart(ctx, data);
-							</script>
-						</c:when>
-					</c:choose>
-				</div>
+									</c:forEach>
+								</c:if>
+							</tbody>
+						</table>
+						<script type="text/javascript">
+							$(document).ready(function() {
+								$('#expenseTable').DataTable();
+							});
+						</script>
+					</c:when>
+					<c:when test="${MODE == 'GRAPH'}">
+						<canvas id="myChart" class="chart"></canvas>
+						<script>
+							var ctx = document.getElementById('myChart')
+									.getContext('2d');
+							var data = ${pieData}
+							var myChart = new Chart(ctx, data);
+						</script>
+					</c:when>
+				</c:choose>
 			</div>
 		</div>
 	</div>
