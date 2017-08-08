@@ -9,22 +9,26 @@
 <title>Savings App | Home</title>
 
 <link href="/static/css/bootstrap-sandstone.min.css" rel="stylesheet">
+<link href="/static/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="/static/css/rowGroup.bootstrap.min.css" rel="stylesheet">
 <!-- <link href="/static/css/bootstrap.min.css" rel="stylesheet"> -->
 
 <script src="/static/js/jquery-3.1.1.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/Chart.js"></script>
-<script>
-    var myChart = new Chart(ctx, {...});
-</script>
-
+<script src="/static/js/jquery.dataTables.min.js"></script>
+<script src="/static/js/dataTables.rowGroup.min.jss"></script>
 
 <style type="text/css">
 .input-group-addon {
 	min-width: 120px;
 	text-align: left;
 }
+select {
+    color: green;
+}
 </style>
+
 
 </head>
 <body>
@@ -116,7 +120,7 @@
 					</div>
 
 					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-						<table class="table table-striped table-hover table-bordered">
+						<table id="budgetTable" class="table table-striped table-hover table-bordered">
 							<thead>
 								<tr>
 									<th>Description</th>
@@ -140,6 +144,11 @@
 								</c:if>
 							</tbody>
 						</table>
+						<script type="text/javascript">
+								$(document).ready(function() {
+								    $('#budgetTable').DataTable();
+								} );
+								</script>
 					</div>
 				</div>
 			</c:when>
