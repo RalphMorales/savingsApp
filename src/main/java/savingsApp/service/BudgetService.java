@@ -18,6 +18,9 @@ public class BudgetService {
 	@Autowired
 	private BudgetDAO budgetRepo;
 	
+	@Autowired
+	private ExpenseService expenseService;
+	
 	public List<Budget> retrieveAll(){
 		List<Budget> result = new ArrayList<>();
 		budgetRepo.findAll().forEach(result::add);
@@ -30,9 +33,8 @@ public class BudgetService {
 		return result.stream().mapToDouble(Double::doubleValue).sum();
 	}
 	
-	//TODO: create implementation
 	public Double remainingBudget(){
-		return new Double(100);
+		return totalBudget()-expenseService.totalExpense();
 	}
 	
 	public void saveBudget(Budget budget){

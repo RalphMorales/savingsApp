@@ -13,6 +13,11 @@
 
 <script src="/static/js/jquery-3.1.1.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/Chart.js"></script>
+<script>
+    var myChart = new Chart(ctx, {...});
+</script>
+
 
 <style type="text/css">
 .input-group-addon {
@@ -20,12 +25,6 @@
 	text-align: left;
 }
 </style>
-
-<script>
-	$(function() {
-		$("#budget-content").load("/budget/manage-budget.html");
-	});
-</script>
 
 </head>
 <body>
@@ -120,7 +119,6 @@
 						<table class="table table-striped table-hover table-bordered">
 							<thead>
 								<tr>
-									<th>#</th>
 									<th>Description</th>
 									<th>Date Created</th>
 									<th>Amount</th>
@@ -131,7 +129,6 @@
 								<c:if test="${not empty budgets}">
 									<c:forEach var="budget" items="${budgets}">
 										<tr>
-											<td>${budget.id}</td>
 											<td>${budget.description}</td>
 											<td><fmt:formatDate type="both"
 													value="${budget.dateCreated}" /></td>

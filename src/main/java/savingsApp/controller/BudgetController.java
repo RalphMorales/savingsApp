@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import savingsApp.entity.Budget;
 import savingsApp.service.BudgetService;
-import savingsApp.utils.Constants.ATTRIBUTE;
-import savingsApp.utils.Constants.BUDGET_MODE;
-import savingsApp.utils.Constants.GLOBAL_MODE;
+import savingsApp.utils.ViewConstants.ATTRIBUTE;
+import savingsApp.utils.ViewConstants.BUDGET_MODE;
+import savingsApp.utils.ViewConstants.GLOBAL_MODE;
 
 @Controller
 public class BudgetController {
@@ -44,7 +44,7 @@ public class BudgetController {
 	}
 
 	@GetMapping("/delete-budget")
-	public String hello(@RequestParam Long id, HttpServletRequest request) {
+	public String deleteBudget(@RequestParam Long id, HttpServletRequest request) {
 		budgetService.deleteBudget(id);
 		return allBudget(request);
 	}

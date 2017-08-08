@@ -18,16 +18,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import savingsApp.entity.Budget;
 import savingsApp.service.BudgetService;
-import savingsApp.utils.Constants.ATTRIBUTE;
-import savingsApp.utils.Constants.BUDGET_MODE;
-import savingsApp.utils.Constants.GLOBAL_MODE;
+import savingsApp.utils.ViewConstants.ATTRIBUTE;
+import savingsApp.utils.ViewConstants.BUDGET_MODE;
+import savingsApp.utils.ViewConstants.GLOBAL_MODE;
 
 @Controller
 public class HomeController {
 
-	@GetMapping("/index")
+	@GetMapping("/")
 	public String mainView(HttpServletRequest request) {
 		request.setAttribute(ATTRIBUTE.MODE.toString(), GLOBAL_MODE.HOME.toString());
+		return "index";
+	}
+	
+	@GetMapping("/summary")
+	public String showSummary(HttpServletRequest request) {
+		request.setAttribute(ATTRIBUTE.MODE.toString(), GLOBAL_MODE.SUMMARY.toString());
 		return "index";
 	}
 
