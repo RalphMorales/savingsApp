@@ -2,6 +2,7 @@ package savingsApp.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 import javax.transaction.Transactional;
 
@@ -32,9 +33,11 @@ public class ExpenseService {
 		return result.stream().mapToDouble(Double::doubleValue).sum();
 	}
 	
-	//TODO: create implementation
-	public Double remainingExpense(){
-		return new Double(100);
+	public Double totalExpense(String type){
+		List<Double> result = new ArrayList<>();
+		StreamSupport.stream(expenseRepo.findAll().spliterator(), false).filter(expense -> expense.getType().equals(type))
+		.forEach(expenseRemaining -> result.add(expenseRemaining.getAmount()));
+		return result.stream().mapToDouble(Double::doubleValue).sum();
 	}
 	
 	public void saveExpense(Expense expense){

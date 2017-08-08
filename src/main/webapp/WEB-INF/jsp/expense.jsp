@@ -81,7 +81,7 @@
 					<div class="panel-heading">Add Expense</div>
 					<div class="panel-body">
 						<div style="padding: 15px;">
-							<form action="save-expense" method="POST" class="form-horizontal">
+							<form action="save-expense?mode=${MODE}" method="POST" class="form-horizontal">
 								<input type="hidden" name="id" value="${expense.id}">
 								<div class="panel">
 									<div class="form-group">
@@ -125,10 +125,8 @@
 			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 				<div class="panel panel-default">
 					<c:choose>
-
 						<c:when test="${MODE == 'ALL_EXPENSE'}">
 
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<table class="table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
@@ -155,29 +153,15 @@
 										</c:if>
 									</tbody>
 								</table>
-							</div>
 						</c:when>
 						<c:when test="${MODE == 'GRAPH'}">
-							<canvas id="myChart" width="200" height="200" class="chart"></canvas>
+							<canvas id="myChart" class="chart"></canvas>
 							<script>
 								var ctx = document.getElementById('myChart')
 										.getContext('2d');
-								var myChart = new Chart(ctx, {
-									type : 'pie',
-									data : {
-										labels : [ "M", "T", "W", "T", "F",
-												"S", "S" ],
-										datasets : [ {
-											backgroundColor : [ "#2ecc71",
-													"#3498db", "#95a5a6",
-													"#9b59b6", "#f1c40f",
-													"#e74c3c", "#34495e" ],
-											data : [ 12, 19, 3, 17, 28, 24, 7 ]
-										} ]
-									}
-								});
+								var data = ${pieData}
+								var myChart = new Chart(ctx, data);
 							</script>
-
 						</c:when>
 					</c:choose>
 				</div>
