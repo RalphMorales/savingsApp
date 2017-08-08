@@ -50,13 +50,13 @@
 
 		<c:choose>
 
-			<c:when test="${MODE == 'MAIN'}">
+			<c:when test="${MODE == 'HOME'}">
 				<div class="jumbotron">
 					<h1>Savings Application</h1>
 					<p>Money is a terrible master but an excellent servant. --P.T.
 						Barnum</p>
 					<p>
-						<a class="btn btn-primary btn-lg">Learn more</a>
+						<a class="btn btn-primary btn-lg" href="/">Show summary</a>
 					</p>
 				</div>
 			</c:when>

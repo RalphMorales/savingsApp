@@ -13,6 +13,11 @@
 
 <script src="/static/js/jquery-3.1.1.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/Chart.js"></script>
+<script>
+    var myChart = new Chart(ctx, {...});
+</script>
+
 
 <style type="text/css">
 .input-group-addon {

@@ -15,6 +15,7 @@ public class Expense {
 	
 	public long id;
 	public Date dateCreated;
+	public String type;
 	public String description;
 	public Double amount;
 	
@@ -22,8 +23,9 @@ public class Expense {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Expense(Date dateCreated, String description, Double amount) {
+	public Expense(Date dateCreated, String type, String description, Double amount) {
 		this.dateCreated = dateCreated;
+		this.type = type;
 		this.description = description;
 		this.amount = amount;
 	}
@@ -46,6 +48,15 @@ public class Expense {
 		this.dateCreated = dateCreated;
 	}
 	
+	@Column(name="type")
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@Column(name="description")
 	public String getDescription() {
 		return description;
